@@ -13,7 +13,7 @@ variables:
   dockerRegistryServiceConnection: 'Docker_Hub'
   imageRepository: 'attiqmscs004/azure-devops'
   containerRegistry: 'Docker_Hub'
-  dockerfilePath: '$(Build.SourcesDirectory)/aps-docker/myWebApp/Dockerfile'
+  dockerfilePath: '$(Build.SourcesDirectory)/myWebApp/Dockerfile'
   tag: '$(Build.BuildId)'
   
   # Agent VM image name
