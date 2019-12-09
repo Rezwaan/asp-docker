@@ -34,7 +34,7 @@ stages:
     - task: PowerShell@2
       displayName: Script is running
       inputs:
-          targetType: inline
+          targetType: filePath
         
 - stage: Build
   dependsOn: script
