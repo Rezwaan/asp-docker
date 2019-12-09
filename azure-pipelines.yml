@@ -31,10 +31,7 @@ stages:
     displayName: PowerShell script is running
     
     steps:
-    - task: PowerShell@2
-      displayName: Script is running
-      inputs:
-          targetType: filePath
+    - pwsh: ./script.ps1
         
 - stage: Build
   dependsOn: script
