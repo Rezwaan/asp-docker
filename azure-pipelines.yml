@@ -20,6 +20,10 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
+# for Windows PowerShell
+steps:
+- powershell: .\script.ps1
+
 stages:
 - stage: Build
   displayName: Build and push stage
