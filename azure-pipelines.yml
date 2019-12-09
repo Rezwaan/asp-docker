@@ -37,6 +37,8 @@ stages:
           targetType: inline
         
 - stage: Build
+  dependsOn: script
+  condition: succeeded
   displayName: Build and push stage
   jobs:  
   - job: Build
