@@ -38,7 +38,7 @@ stages:
         
 - stage: Build
   dependsOn: script
-  condition: succeeded
+  condition: succeeded()
   displayName: Build and push stage
   jobs:  
   - job: Build
