@@ -31,7 +31,7 @@ stages:
     displayName: PowerShell script is running
     
     steps:
-    - pwsh: ./script.ps1
+    - pwsh: ./powershell.ps1
         
 - stage: Build
   dependsOn: script

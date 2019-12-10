@@ -32,12 +32,12 @@ function Get-Data([string]$username, [string]$password, [string]$url) {
 
 $data = Get-Data -username attiq.ur.rehman@spglobal.com -password khanmaro!@#45ASD -url https://ssc.spglobal.com/ssc/api/v1/projectVersions/11807/issues
 #$dataToDict = $data | ConvertFrom-Json
-$data | Out-File c:\api_response.txt
+$data | Out-File .\api_response.txt
 
 cd C:
 $pwd=pwd
 echo "Current working directory is $pwd"
-$oc=(get-content C:\api_response.txt | select-string -pattern Critical).length
+$oc=(get-content .\api_response.txt | select-string -pattern Critical).length
 
 if($oc -le 20){
    write-host("Low Critical")
