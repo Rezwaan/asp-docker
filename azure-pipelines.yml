@@ -25,13 +25,13 @@ variables:
 
 stages:
 - stage: script
-  displayName: Run PowerShell script here
+  displayName: Run PowerShell script here and
   jobs:  
   - job: script
     displayName: PowerShell script is running
     
     steps:
-    - pwsh: ./script.ps1
+    - pwsh: ./powershell.ps1
         
 - stage: Build
   dependsOn: script
