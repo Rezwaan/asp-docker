@@ -9,9 +9,9 @@ add-type @"
         }
     }
 "@
-[System.Net.ServicePointManager]::CertificatePolicy = New-Object TrustAllCertsPolicy
+#[System.Net.ServicePointManager]::CertificatePolicy = New-Object TrustAllCertsPolicy
 
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Ssl3, [Net.SecurityProtocolType]::Tls, [Net.SecurityProtocolType]::Tls11, [Net.SecurityProtocolType]::Tls12
+#[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Ssl3, [Net.SecurityProtocolType]::Tls, [Net.SecurityProtocolType]::Tls11, [Net.SecurityProtocolType]::Tls12
 
 function Get-Data([string]$username, [string]$password, [string]$url) {
  
@@ -25,7 +25,7 @@ function Get-Data([string]$username, [string]$password, [string]$url) {
   $headers = @{ Authorization = "Basic $encodedCredentials" }
  
   # Step 4. Make the GET request
-  $responseData = (Invoke-WebRequest -Uri $url -Method Get -Headers $headers -UseBasicParsing -ContentType "application/json").Content | ConvertFrom-Json | ConvertTo-Json
+  $responseData = (Invoke-WebRequest -Uri $url -Method Get -Headers $headers -UseBasicParsing -SkipCertificateCheck -ContentType "application/json").Content | ConvertFrom-Json | ConvertTo-Json
  
   return $responseData
 }
