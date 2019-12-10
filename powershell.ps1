@@ -1,14 +1,14 @@
-add-type @"
-    using System.Net;
-    using System.Security.Cryptography.X509Certificates;
-    public class TrustAllCertsPolicy : ICertificatePolicy {
-        public bool CheckValidationResult(
-            ServicePoint srvPoint, X509Certificate certificate,
-            WebRequest request, int certificateProblem) {
-            return true;
-        }
-    }
-"@
+#add-type @"
+ #   using System.Net;
+  #  using System.Security.Cryptography.X509Certificates;
+   # public class TrustAllCertsPolicy : ICertificatePolicy {
+    #    public bool CheckValidationResult(
+    #        ServicePoint srvPoint, X509Certificate certificate,
+     #       WebRequest request, int certificateProblem) {
+      #      return true;
+       # }
+    #}
+#"@
 #[System.Net.ServicePointManager]::CertificatePolicy = New-Object TrustAllCertsPolicy
 
 #[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Ssl3, [Net.SecurityProtocolType]::Tls, [Net.SecurityProtocolType]::Tls11, [Net.SecurityProtocolType]::Tls12
@@ -30,7 +30,7 @@ function Get-Data([string]$username, [string]$password, [string]$url) {
   return $responseData
 }
 
-$data = Get-Data -username attiq.ur.rehman@spglobal.com -password agsgsggahshagdgdggasdggd -url https://ssc.spglobal.com/ssc/api/v1/projectVersions/11807/issues
+$data = Get-Data -username attiq.ur.rehman@spglobal.com -password khanmaro!@#45ASD -url https://ssc.spglobal.com/ssc/api/v1/projectVersions/11807/issues
 #$dataToDict = $data | ConvertFrom-Json
 $data | Out-File .\api_response.txt
 
