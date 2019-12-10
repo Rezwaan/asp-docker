@@ -30,7 +30,7 @@ function Get-Data([string]$username, [string]$password, [string]$url) {
   return $responseData
 }
 
-$data = Get-Data -username attiq.ur.rehman@spglobal.com -password khanmaro!@#45ASD -url https://ssc.spglobal.com/ssc/api/v1/projectVersions/11807/issues
+$data = Get-Data -username attiq.ur.rehman@spglobal.com -password agsgsggahshagdgdggasdggd -url https://ssc.spglobal.com/ssc/api/v1/projectVersions/11807/issues
 #$dataToDict = $data | ConvertFrom-Json
 $data | Out-File .\api_response.txt
 
