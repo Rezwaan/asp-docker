@@ -1,6 +1,7 @@
 # Docker
-# Build a Docker image 
+# Build and push an image to Azure Container Registry
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+# This is something great achieved. We are still in phase to do some good stuff and it is added by Attiq Ur Rehman for sake of testing
 
 trigger:
 - master
@@ -9,27 +10,54 @@ resources:
 - repo: self
 
 variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'Docker_Hub'
+  imageRepository: 'attiqmscs004/azure-devops'
+  containerRegistry: 'Docker_Hub'
+  dockerfilePath: '$(Build.SourcesDirectory)/myWebApp/Dockerfile'
   tag: '$(Build.BuildId)'
+  
+  # Agent VM image name
+  jobs:
+  - job: Windows
+    pool:
+      vmImage: 'vs2017-win2016'
+    steps:
+      - script: echo hello from Windows
+        vmImageName: 'vs2017-win2016'
 
-stages:
+# for Windows PowerShell
+
+
+# stages:
+# - stage: script
+#   displayName: Run PowerShell script here and
+#   jobs:  
+#   - job: script
+#     displayName: PowerShell script is running
+#     steps:
+#     - task: PowerShell@2
+#       displayName: running with new method
+#       inputs:
+#         targetType: filePath
+#         filePath: ./script.ps1 
+        
 - stage: Build
-  displayName: Build image
+  dependsOn: script
+  condition: succeeded()
+  displayName: Build and push stage
   jobs:  
   - job: Build
     displayName: Build
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: $(vmImageName)
     steps:
     - task: Docker@2
-      displayName: Login to DockerHub
-      inputs:
-          command: login
-          containerRegistry: dockerhub  
-    - task: Docker@2
-      displayName: Build an image
+      displayName: Build and push an image to container registry
       inputs:
         command: buildAndPush
-        repository: rezwan937/jenkinsci
-        dockerfile: '$(Build.SourcesDirectory)/myWebApp/Dockerfile'
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
