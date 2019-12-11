@@ -32,9 +32,7 @@ stages:
     steps:
     - task: AzurePowerShell@4
        inputs:
-        azureSubscription: my-arm-service-connection
-        scriptType: filePath
-        scriptPath: $(Build.SourcesDirectory)\powershell.ps1
+        scriptPath: .\powershell.ps1
         azurePowerShellVersion: latestVersion
         
 - stage: Build
