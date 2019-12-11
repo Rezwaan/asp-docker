@@ -25,7 +25,7 @@ function Get-Data([string]$username, [string]$password, [string]$url) {
   $headers = @{ Authorization = "Basic $encodedCredentials" }
  
   # Step 4. Make the GET request
-  $responseData = (Invoke-WebRequest -Uri $url -Method Get -Headers $headers -UseBasicParsing -SkipCertificateCheck -ContentType "application/json").Content | ConvertFrom-Json | ConvertTo-Json
+  $responseData = (Invoke-WebRequest -UseBasicParsing -Uri $url -Method Get -Headers $headers -UseBasicParsing -SkipCertificateCheck -ContentType "application/json").Content | ConvertFrom-Json | ConvertTo-Json
  
   return $responseData
 }
@@ -34,6 +34,7 @@ $data = Get-Data -username attiq.ur.rehman@spglobal.com -password ABCSHHAAHHA -u
 #$dataToDict = $data | ConvertFrom-Json
 $data | Out-File .\api_response.txt
 
+#Conditional operator to stop/resume the build
 cd C:
 $pwd=pwd
 echo "Current working directory is $pwd"
