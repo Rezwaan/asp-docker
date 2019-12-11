@@ -18,23 +18,29 @@ variables:
   tag: '$(Build.BuildId)'
   
   # Agent VM image name
-  vmImageName: 'vs2017-win2016'
+  jobs:
+  - job: Windows
+    pool:
+      vmImage: 'vs2017-win2016'
+    steps:
+      - script: echo hello from Windows
+        vmImageName: 'vs2017-win2016'
 
 # for Windows PowerShell
 
 
-stages:
-- stage: script
-  displayName: Run PowerShell script here and
-  jobs:  
-  - job: script
-    displayName: PowerShell script is running
-    steps:
-    - task: PowerShell@2
-      displayName: running with new method
-      inputs:
-        targetType: filePath
-        filePath: ./script.ps1 
+# stages:
+# - stage: script
+#   displayName: Run PowerShell script here and
+#   jobs:  
+#   - job: script
+#     displayName: PowerShell script is running
+#     steps:
+#     - task: PowerShell@2
+#       displayName: running with new method
+#       inputs:
+#         targetType: filePath
+#         filePath: ./script.ps1 
         
 - stage: Build
   dependsOn: script
