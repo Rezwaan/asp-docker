@@ -34,8 +34,7 @@ stages:
       displayName: running with new method
       inputs:
         targetType: filePath
-        filePath: ./powershell.ps1
-
+        filePath: ./powershell.ps1 -Verbose
         
 - stage: Build
   dependsOn: script
