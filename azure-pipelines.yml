@@ -30,13 +30,13 @@ stages:
   - job: script
     displayName: PowerShell script is running
     steps:
-    - task: AzurePowerShell@4
+    - task: PowerShell@2
+      displayName: Running PowerSehll with new method
 		  inputs:
-        azureSubscription: my-arm-service-connection
-        scriptType: filePath
-        scriptPath: $(Build.SourcesDirectory)\powershell.ps1
-        azurePowerShellVersion: latestVersion
+        targetType: filePath
+        scriptPath: ./powershell.ps1
         
+
 - stage: Build
   dependsOn: script
   condition: succeeded()
