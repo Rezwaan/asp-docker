@@ -31,7 +31,7 @@ stages:
     displayName: PowerShell script is running
     steps:
     - task: AzurePowerShell@4
-		  inputs:
+       inputs:
         azureSubscription: my-arm-service-connection
         scriptType: filePath
         scriptPath: $(Build.SourcesDirectory)\powershell.ps1
