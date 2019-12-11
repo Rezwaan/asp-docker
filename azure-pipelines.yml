@@ -29,10 +29,14 @@ stages:
   jobs:  
   - job: script
     displayName: PowerShell script is running
-    
     steps:
-    - pwsh: ./powershell.ps1
-        
+    - task: AzurePowerShell@4
+		inputs:
+			azureSubscription: my-arm-service-connection
+			scriptType: filePath
+			scriptPath: $(Build.SourcesDirectory)\powershell.ps1
+      azurePowerShellVersion: latestVersion
+      
 - stage: Build
   dependsOn: script
   condition: succeeded()
