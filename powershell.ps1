@@ -25,8 +25,8 @@ function Get-Data([string]$username, [string]$password, [string]$url) {
   $headers = @{ Authorization = "Basic $encodedCredentials" }
  
   # Step 4. Make the GET request
-  $responseData = (Invoke-WebRequest -Uri $url -Method Get -Headers $headers -UseBasicParsing -SkipCertificateCheck -ContentType "application/json").Content | ConvertFrom-Json | ConvertTo-Json
- 
+  #$responseData = (Invoke-WebRequest -Uri $url -Method Get -Headers $headers -UseBasicParsing -SkipCertificateCheck -ContentType "application/json").Content | ConvertFrom-Json | ConvertTo-Json
+ $responseData = Invoke-RestMethod -Uri $uri -Method Get -UseBasicParsing 
   return $responseData
 }
 
