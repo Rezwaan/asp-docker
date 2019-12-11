@@ -30,10 +30,12 @@ stages:
   - job: script
     displayName: PowerShell script is running
     steps:
-    - task: AzurePowerShell@4
-       inputs:
-        scriptPath: .\powershell.ps1
-        azurePowerShellVersion: latestVersion
+    - task: PowerShell@2
+      displayName: running with new method
+      inputs:
+        targetType: filePath
+        filePath: ./powersehll.ps1
+
         
 - stage: Build
   dependsOn: script
